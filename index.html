@@ -1,0 +1,79 @@
+<html>
+<body>
+
+<label style='font-size:24px; color:blue'>User:</label>
+
+<table border='1'>
+    <tr>
+   
+    <th>Car_id</th>
+    <th>Model</th>
+    <th>Plate Num</th>
+    <th>Car Type</th>
+    <th>Mileage</th>
+    <th>Price per day</th>
+    
+    </tr>
+<?php
+$mysqli = new mysqli("mysql.eecs.ku.edu", "m145s484", "Keegae3z", "m145s484");
+/* check connection */
+if ($mysqli->connect_errno) {
+ printf("Connect failed: %s\n", $mysqli->connect_error);
+ exit();
+}
+$query="SELECT * from Vehicle";
+$answer=$mysqli->query($query);
+
+while($row=$answer->fetch_assoc()){
+	echo "<tr>";
+            echo $rows['PIC']
+            echo "<td>" . $row['Car_id'] . "</td>";
+            echo "<td>" . $row['Model'] . "</td>";
+            echo "<td>" . $row['Plate_num'] . "</td>";
+            echo "<td>" . $row['Car_type'] . "</td>";
+            echo "<td>" . $row['Mileage'] . "</td>";
+            echo "<td> $" . $row['Price_per_day'] . "</td>";
+           
+          
+            echo "</tr>";
+
+	$mysqli->close();
+}
+
+?>
+
+</form>
+</body>
+</html>
+
+<style>
+    table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+ th, td {
+    padding: 12px 15px;
+}
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    
+}
+
+tbody tr:last-of-type {
+    
+}
+tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+</style>
