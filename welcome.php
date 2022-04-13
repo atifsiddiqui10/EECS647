@@ -20,9 +20,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </style>
 </head>
 <body>
-<form method="POST" action="index.php">
+
     <!-- <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1> -->
-    <table border='1'>
+    <table id="table" border='1'>
     <tr>
     <th></th>
     <th>Car_id </th>
@@ -50,10 +50,10 @@ $answer=$mysqli->query($query);
 $Car_id= $Model = $Plate_num= $Car_type= $Mileage= $Price_per_day= "";
 
 
-while($row=$answer->fetch_assoc()){
+while($row = mysqli_fetch_assoc($answer)){
 	// echo "<tr>";
             
-    //         echo "<td>" . $row['Car_id'] . "</td>";
+    $someNewVar[$row['Car_id']] = $row; 
     //         echo "<td>" . $row['Model'] . "</td>";
     //         echo "<td>" . $row['Plate_num'] . "</td>";
     //         echo "<td>" . $row['Car_type'] . "</td>";
@@ -61,17 +61,31 @@ while($row=$answer->fetch_assoc()){
     //         echo "<td> $" . $row['Price_per_day'] . "</td>";
            
           
- 
+
 
 ?>
-<tr>
+
+
+<?php
+
+
+ 
+?>
+
+
+<tr id="scdiv">
+<td id="scdiv" >     <?php echo $row['Car_id'] ?></td>
     <td name="PIC"><img width=120px  src="<?php echo $row['PIC'] ?>"></td>
-    <td name="fname" >     <?php echo $row['Car_id'] ?></td>
-    <td> <input <?php echo $row['Model'] ?> </td>
+   
+    <td id="quantitydiv"> <?php echo $row['Model'] ?> </td>
     <td><?php echo $row['Plate_num'] ?> </td>
     <td><?php echo $row['Car_type'] ?> </td>
     <td><?php echo $row['Mileage'] ?> </td>
     <td>$<?php echo $row['Price_per_day'] ?> </td>
+   
+    <input id="carid2" type="text" name="carid2" />
+    <input id="carid3" type="text" name="carid3" />
+    <input id="carid4" type="text" name="carid4" />
     <td><input type="submit" name="submit[1]" value="OK" />
     <td>
         
@@ -83,24 +97,51 @@ if($row['Available'] == 0) {
     echo 'Available ' ;
    
 }?>
-    
-<td>
+   
 
-   <td> <button value="Submit">Book me</button><td>
+   <form action="index.php" method="POST"> 
+   <input id="carid" type=hidden name="carid" />
+   <td> <button value="book" id=" <?php echo $row['Car_id'] ?>" name="book[]" type="submit" >Book me</button>
+   <td>
         
 </tr>
-
+</form>
 <?php
 }
 
 ?>
+    <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to Nemisis Car Rentals.</h1>
     <p>
         <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
         <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
     </p>
 
-</form>
+
 </body>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+ $("#table tr").click(function(){
+  $(this).addClass('selected').siblings().removeClass('selected');    
+   var value=$(this).find('td:first').html();
+   var id = $(this).closest("td").find('td:eq(1)').text();
+    // alert(value)  
+    
+        var str= $('#carid').val(value);
+        alert(str.val());
+        alert(id);
+    
+  
+
+
+});
+
+$('.ok').on('click', function(e){
+    alert($("#table tr.selected td:first").html());
+});
+
+        </script>
+
 </html>
 
 <style>

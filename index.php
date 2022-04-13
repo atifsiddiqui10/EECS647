@@ -1,22 +1,20 @@
 <?php
-// Initialize the session
-session_start();
- 
-// // Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+$servername='mysql.eecs.ku.edu';
+$username='m145s484';
+$password='Keegae3z';
+$dbname = "m145s484";
+$conn=mysqli_connect($servername,$username,$password,"$dbname");
+  if(!$conn){
+      die('Could not Connect MySql Server:' .mysql_error());
+    }
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+     $carid = $_POST['carid'];
     
-// }
- 
-// Include config file
-require_once "config.php";
- 
-// // Define variables and initialize with empty values
-// $username = $password = "";
-// $username_err = $password_err = $login_err = "";
- 
-// Processing form data when form is submitted
-if ($_POST["submit"]) {
-    $id = key($_POST["submit"]);
-    echo $id;
- }
+     echo $carid;
+     mysqli_close($conn);
+
 ?>

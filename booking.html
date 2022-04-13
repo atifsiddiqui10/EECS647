@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Record</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        .wrapper{
+            width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header">
+                        <h2>Contact Form</h2>
+                    </div>
+                    <p>Please fill this form and submit to add booking record to the database.</p>
+                    <form action="Insert_Reservation.php" method="post">
+                        <div class="form-group">
+                            <label>Number of Days</label>
+                            <input type="number" name="days" class="form-control" min ="1" max ="10", required>
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <select type="" name="location" class="form-control">
+                                <option value = 'Daisy Hill'> Daisy Hill</option>
+                                <option value = 'Meadowbrook'> Meadowbrook</option>
+                                <option value = 'Mass Str'> Mass Str</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="time" name="time" class="form-control" min="00:00" max="23:59" required >
+                        </div>
+                        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                    </form>
+                </div>
+            </div>        
+        </div>
+    </div>
+</body>
+</html>
