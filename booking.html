@@ -12,15 +12,39 @@
     </style>
 </head>
 <body>
+    <?php
+        $servername='mysql.eecs.ku.edu';
+        $username='m145s484';
+        $password='Keegae3z';
+        $dbname = "m145s484";
+        $conn=mysqli_connect($servername,$username,$password,"$dbname");
+        if(!$conn){
+            die('Could not Connect MySql Server:' .mysql_error());
+            }
+
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
+        error_reporting(E_ALL);
+        $Car_id = '5';
+        $query = "SELECT * FROM Vehicle WHERE Car_id = $Car_id";
+        $answer=$conn->query($query);
+        while($row = mysqli_fetch_assoc($answer)){
+    
+ ?>
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Contact Form</h2>
                     </div>
-                    <p>Please fill this form and submit to add booking record to the database.</p>
                     <form action="Insert_Reservation.php" method="post">
+                        <div class="form-group">
+                            <label>Your Personal Vehicle</label>
+                            <img style="text-align: center; display: flex; left: 50; right: 50; width: 100%; height: 50%;" src="<?php echo $row['PIC']; ?>">
+                            <h2> Model: <?php echo $row['Model'];?> <br> Mileage: <?php echo $row['Mileage'];?> <br> Plate No: <?php echo $row['Plate_num'];?>
+                               <br> Price: $<?php echo $row['Price_per_day'];?></h2>
+                            <h1></h1>
+                        </div>
                         <div class="form-group">
                             <label>Number of Days</label>
                             <input type="number" name="days" class="form-control" min ="1" max ="10", required>
@@ -37,6 +61,10 @@
                             <label>Time</label>
                             <input type="time" name="time" class="form-control" min="00:00" max="23:59" required >
                         </div>
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" name="date" value="<?php echo date('Y-m-d'); ?>" required >
+                        </div>
                         <input type="submit" class="btn btn-primary" name="submit" value="Submit">
                     </form>
                 </div>
@@ -44,4 +72,10 @@
         </div>
     </div>
 </body>
+<?php
+mysqli_close($conn);
+
+        }
+        ?>
 </html>
+       
