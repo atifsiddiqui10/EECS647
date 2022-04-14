@@ -18,6 +18,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <style>
         body{ font: 14px sans-serif; text-align: center; }
     </style>
+   
+  
+        <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
+        <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+        <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to Nemisis Car Rentals.</h1>
+    
 </head>
 <body>
 
@@ -70,23 +76,18 @@ while($row = mysqli_fetch_assoc($answer)){
 
 
  
-?>
+?> 
 
 
 <tr id="scdiv">
 <td id="scdiv" >     <?php echo $row['Car_id'] ?></td>
     <td name="PIC"><img width=120px  src="<?php echo $row['PIC'] ?>"></td>
    
-    <td id="quantitydiv"> <?php echo $row['Model'] ?> </td>
+    <td> <?php echo $row['Model'] ?> </td>
     <td><?php echo $row['Plate_num'] ?> </td>
     <td><?php echo $row['Car_type'] ?> </td>
     <td><?php echo $row['Mileage'] ?> </td>
     <td>$<?php echo $row['Price_per_day'] ?> </td>
-   
-    <input id="carid2" type="text" name="carid2" />
-    <input id="carid3" type="text" name="carid3" />
-    <input id="carid4" type="text" name="carid4" />
-    <td><input type="submit" name="submit[1]" value="OK" />
     <td>
         
     <?php
@@ -97,11 +98,13 @@ if($row['Available'] == 0) {
     echo 'Available ' ;
    
 }?>
+</td>
    
-
-   <form action="index.php" method="POST"> 
-   <input id="carid" type=hidden name="carid" />
-   <td> <button value="book" id=" <?php echo $row['Car_id'] ?>" name="book[]" type="submit" >Book me</button>
+   <form action="booking.php" method="POST"> 
+   
+  
+    <input id="carid" type=hidden name="carid" value= "<?php echo $row['Car_id'] ?>"/>
+   <td> <button value="book" id=" " name="book[]" type="submit" >Book me</button>
    <td>
         
 </tr>
@@ -110,37 +113,11 @@ if($row['Available'] == 0) {
 }
 
 ?>
-    <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to Nemisis Car Rentals.</h1>
-    <p>
-        <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
-        <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
-    </p>
+   
 
 
 </body>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script>
- $("#table tr").click(function(){
-  $(this).addClass('selected').siblings().removeClass('selected');    
-   var value=$(this).find('td:first').html();
-   var id = $(this).closest("td").find('td:eq(1)').text();
-    // alert(value)  
-    
-        var str= $('#carid').val(value);
-        alert(str.val());
-        alert(id);
-    
-  
-
-
-});
-
-$('.ok').on('click', function(e){
-    alert($("#table tr.selected td:first").html());
-});
-
-        </script>
 
 </html>
 

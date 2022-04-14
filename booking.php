@@ -1,3 +1,13 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +35,8 @@
         ini_set('display_errors', '1');
         ini_set('display_startup_errors', '1');
         error_reporting(E_ALL);
-        $Car_id = '5';
+        
+        $Car_id = $_POST['carid'];
         $query = "SELECT * FROM Vehicle WHERE Car_id = $Car_id";
         $answer=$conn->query($query);
         while($row = mysqli_fetch_assoc($answer)){
@@ -65,6 +76,7 @@
                             <label>Date</label>
                             <input type="date" name="date" value="<?php echo date('Y-m-d'); ?>" required >
                         </div>
+                        <input id="carid" type=hidden name="carid" value= "<?php echo $Car_id ?>"/>
                         <input type="submit" class="btn btn-primary" name="submit" value="Submit">
                     </form>
                 </div>
