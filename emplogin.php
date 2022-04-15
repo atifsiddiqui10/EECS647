@@ -1,17 +1,8 @@
-<?php
-// Initialize the session
-session_start();
- 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
-}
- 
+<?php 
 // Include config file
 require_once "config.php";
- 
-// Define variables and initialize with empty values
+session_abort();
+//Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
  
@@ -35,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $sql = "SELECT id, username, password FROM Employee WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -53,7 +44,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    
                     if(mysqli_stmt_fetch($stmt)){
+                        echo $password;
+                        // echo $hashed_password;
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
                             session_start();
@@ -64,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;                            
                             
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: admin.php");
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
@@ -88,6 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
  
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,7 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div>
-        <h1>WELCOME TO NEMISIS CAR RENTAL SERVICE</h1>
+        <h1>Hello NEMISIS ADMIN</h1>
     </div>
     <div class="wrapper">
         <h2>Login</h2>
@@ -112,8 +107,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo '<div class="alert alert-danger">' . $login_err . '</div>';
         }        
         ?>
-
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="admin.php" method="post">
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
@@ -127,9 +121,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up</a>.</p>
-            <p>Are you an admin? <a href="emplogin.php">Login</a>.</p>
         </form>
     </div>
 </body>
 </html>
+     
