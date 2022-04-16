@@ -1,13 +1,15 @@
 <?php
+// Session Start 
 session_start();
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: welcome.php");
     exit;
 }
- 
+
 require_once "config.php";
 
+// giving variable names 
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
 
