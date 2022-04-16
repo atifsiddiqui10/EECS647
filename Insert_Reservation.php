@@ -15,8 +15,10 @@ if(isset($_POST['submit']))
      $location = $_POST['location'];
      $time = $_POST['time'];
      $date = $_POST['date'];
-     $sql = "INSERT INTO Reservation (ID, No_of_days, Location, Pickup_time, Car_id, Pickup_date)
-     VALUES ('' , '$days','$location','$time', $car_id, '$date')";
+     $email=$_POST['email'];
+    //  echo $email;
+     $sql = "INSERT INTO Reservation (ID, No_of_days, Location, Pickup_time, Car_id, Pickup_date, Email)
+     VALUES ('' , '$days','$location','$time', $car_id, '$date', '$email')";
    
      $minuscar= "UPDATE Vehicle SET Available = 0 WHERE Car_id = $car_id";
      if (mysqli_query($conn, $sql)) {
@@ -60,7 +62,10 @@ if(isset($_POST['submit']))
     $model=$row1['Model'];
     $Price=$row1['Price_per_day'];
     $days=$row1['No_of_days'];
+    $PIC=$row1['PIC'];
     $Plate=$row1['Plate_num'];
+    $newdate=date('Y-m-d', strtotime($date."7 days"));
+    // echo $newdate;
     $sql2 = "INSERT INTO Receipt (Receipt_id,Total_amount, State_tax, ID)
     VALUES ('',$var_amount,6.5, $Reservation)";
     //  $payment = "INSERT INTO Receipt (Receipt_id,Total_amount, State_tax, ID)
@@ -69,6 +74,7 @@ if(isset($_POST['submit']))
     if(mysqli_query($conn, $sql2)) {
     //    echo "New record has been added successfully !";
          $sql3="SELECT * FROM Receipt INNER JOIN Reservation where Receipt.ID=Reservation.ID AND Total_amount=$var_amount ";
+        //  $sql6="SELECT * FROM Payment "
          $answer3=$conn->query($sql3);
           if($row2=mysqli_fetch_assoc($answer3)){
             // echo $var_amount;
@@ -76,6 +82,28 @@ if(isset($_POST['submit']))
             // echo $row2['State_tax'];
             // echo $row2['ID'];
             // echo $row2['Total_amount'];
+            // $from = "deepakkumar@ku.com";
+            // $to = "deepakladher@gmail.com";
+            // $email_cc = "info@bbminfo.com";
+            // $email_bcc = "xyz@yahoo.com";
+            // $subject = "Invitation for New YGen SEO Tool";
+            // $message = "Dear User, We are very glad to inform and invite you, that BBM's YGen SEO Tool (bbminfo.com) is now ready to launch on 15th August, 2013.";
+        
+            // /* Header Information */
+            // $header = "From: " . strip_tags($from) . "\r\n";
+            // // $header .= "Cc: " . strip_tags($email_cc) . "\r\n";
+            // // $header .= "Bcc: " . strip_tags($email_bcc) . "\r\n";
+            // // $header .= "Reply-To: " . strip_tags($from) . "\r\n";
+            // $header .= "MIME-Version: 1.0\r\n";
+            // $header .= "Content-Type: text/plain; charset=us-ascii\r\n";
+        
+            // $flg = mail($to, $subject, $message, $header);
+        
+            // if($flg == true) {
+            //     echo("Your message has been sent.");
+            // } else {
+            //     echo("Failed to sent.");
+            // }
           }
 
 
@@ -135,7 +163,9 @@ if(isset($_POST['submit']))
                 <td colspan="2">
                     <table>
                         <tr>
+  
                             <td>
+                            
                             Pickup Location:<?php echo $location ?> Lawrence, Kansas<br />
                             </td>
 
@@ -150,8 +180,8 @@ if(isset($_POST['submit']))
             <tr class="details">
                 <td>Receipt ID number: <?php echo $row2['Receipt_id'] ?></td>
                    
-                <td> Rental date: <?php echo $date?> at <?php echo $time?> 
-                <tr>Payment due date: </tr>
+                <td> Email:<?php echo $email ?>  <br> Rental date: <?php echo $date?> at <?php echo $time?> 
+                <tr>Payment due date:  <?php echo $newdate?></tr>
             </td>
                 
             </tr>
@@ -162,13 +192,13 @@ if(isset($_POST['submit']))
             
 
             <tr class="heading">
-                <td>Item</td>
+                <td>Vehicle</td>
                 <td></td>
             </tr>
 
          
             <tr class="item">
-                <td> <center><?php echo $Plate  ?>  <?php echo $model  ?> </center></td>
+                <td> <img src="<?php echo $PIC  ?>" style="height:50px; border-radius:40px" > <?php echo $Plate  ?>  <?php echo $model  ?> </td>
                    
                 <td></td>
             </tr>

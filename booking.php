@@ -63,6 +63,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <div class="form-group">
                             <label>Location</label>
                             <select type="" name="location" class="form-control">
+                                <option hidden> Select the Pickup Location</option >
                                 <option value = 'Daisy Hill'> Daisy Hill</option>
                                 <option value = 'Meadowbrook'> Meadowbrook</option>
                                 <option value = 'Mass Str'> Mass Str</option>
@@ -76,8 +77,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             <label>Date</label>
                             <input type="date" name="date" value="<?php echo date('Y-m-d'); ?>" required >
                         </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" id="email"pattern=".+@ku\.edu" size="30" placeholder="XYZ@ku.edu" required>
+                        </div>
                         <input id="carid" type=hidden name="carid" value= "<?php echo $Car_id ?>"/>
-                        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                        <input type="submit" class="btn btn-primary"  name="submit" value="Submit">
                     </form>
                 </div>
             </div>        

@@ -67,7 +67,7 @@ while($row = mysqli_fetch_assoc($answer)){
     //         echo "<td> $" . $row['Price_per_day'] . "</td>";
            
           
-
+    $value="Book me"
 
 ?>
 
@@ -94,6 +94,7 @@ while($row = mysqli_fetch_assoc($answer)){
 // get the product and stock level
 if($row['Available'] == 0) {
     echo 'Not Available';
+    $value="Booked";
 } else {
     echo 'Available ' ;
    
@@ -104,17 +105,20 @@ if($row['Available'] == 0) {
    
   
     <input id="carid" type=hidden name="carid" value= "<?php echo $row['Car_id'] ?>"/>
-   <td> <button value="book" id=" " name="book[]" type="submit" >Book me</button>
+   <td> <button value="book" name="book[]" type="submit" id="test" <?php if ($row['Available'] == 0){
+
+   ?> $value= "Booked" disabled='disabled'<?php  } else { ?> $value="Book me"  <?php } ?>><?php echo $value ?></button>
    <td>
         
 </tr>
+<script>
+      
+</script>
 </form>
 <?php
 }
 
 ?>
-   
-
 
 </body>
 
