@@ -14,20 +14,12 @@ $username_err = $password_err = $login_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(empty(trim($_POST["username"]))){
-<<<<<<< HEAD
-        $username_err = "Username required.";
-=======
         $username_err = "Username Required";
->>>>>>> 03ee5f78926b14d32353217a03642d3d49882481
     } else{
         $username = trim($_POST["username"]);
     }
     if(empty(trim($_POST["password"]))){
-<<<<<<< HEAD
-        $password_err = "Password required.";
-=======
         $password_err = "Password Required";
->>>>>>> 03ee5f78926b14d32353217a03642d3d49882481
     } else{
         $password = trim($_POST["password"]);
     }

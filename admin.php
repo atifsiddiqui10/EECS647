@@ -35,7 +35,7 @@ require_once "config.php";
                     </div>
                         <form action="InsertVehicle.php" method="post">
                             <div class="form-group">
-                                <label>Add Vehicle</label>
+                                <label><h3>Add Vehicle</h3></label>
                             </div>
                             <div class ="form-group">
                                 <label> Car ID: </label>
@@ -82,7 +82,7 @@ require_once "config.php";
                     </div>
                         <form action="DeleteVehicle.php" method="post">
                             <div class="form-group">
-                                <label>Delete Vehicle</label>
+                                <label><h3>Delete Vehicle</h3></label>
                             </div>
                             <div class ="form-group">
                                 <label> Car ID: </label>
@@ -104,7 +104,7 @@ require_once "config.php";
                     </div>
                         <form action="Available.php" method="post">
                             <div class="form-group">
-                                <label>Update Vehicle</label>
+                                <label><h3> Vehicle</h3></label>
                             </div>
                             <div class ="form-group">
                                 <label> Car ID: </label>
@@ -130,7 +130,7 @@ require_once "config.php";
                     </div>
                         <form action="changeprice.php" method="post">
                             <div class="form-group">
-                                <label>Change Vehicle Price</label>
+                                <label><h3>Change Vehicle Price</h3></label>
                             </div>
                             <div class ="form-group">
                                 <label> Car ID: </label>
