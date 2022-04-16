@@ -8,14 +8,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
  
-// Include config file
 require_once "config.php";
  
-// Define variables and initialize with empty values
+// Define variables and set them to empty 
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
  
-// Processing form data when form is submitted
+// get data when form is submitted 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate new password
