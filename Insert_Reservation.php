@@ -20,11 +20,7 @@ if(isset($_POST['submit']))
      $sql = "INSERT INTO Reservation (ID, No_of_days, Location, Pickup_time, Car_id, Pickup_date, Email)
      VALUES ('' , '$days','$location','$time', $car_id, '$date', '$email')";
    
-<<<<<<< HEAD
-     $sql2 = "UPDATE Vehicle SET Available = 0 WHERE Car_id = $car_id";
-=======
      $minuscar= "UPDATE Vehicle SET Available = 0 WHERE Car_id = $car_id";
->>>>>>> 03ee5f78926b14d32353217a03642d3d49882481
      if (mysqli_query($conn, $sql)) {
       //   
         
@@ -32,17 +28,6 @@ if(isset($_POST['submit']))
         //  echo "Booking done here";
 
      }
-<<<<<<< HEAD
-     if (mysqli_query($conn, $sql2)) {
-      echo "New record has been updated !";
-   } else {
-      echo "Error: " . $sql . ":-" . mysqli_error($conn);
-   }
-
-     mysqli_close($conn);
-}
-?>
-=======
      if (mysqli_query($conn, $minuscar)) {
         //   
           
@@ -336,4 +321,3 @@ if(isset($_POST['submit']))
         text-align: left;
     }
 </style>
->>>>>>> 03ee5f78926b14d32353217a03642d3d49882481
