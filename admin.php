@@ -24,7 +24,7 @@ require_once "config.php";
 <body>
 <h1> NEMISIS CAR RENTAL SERVICE </h1>
 <p>
-    <a href="logout.php" class="btn btn-danger ml-3">Sign Out</a>
+    <a href="logout.php" class="btn btn-danger ml-3", style = "float: right; ">Sign Out</a>
 </p>
 
 <div class="wrapper", style="width: 40%; height: 80%; float: left;">
@@ -42,7 +42,7 @@ require_once "config.php";
                                 <input type="number" name="car_id" class="form-control", required>
                             </div>
                             <div class ="form-group">   
-                                <label> Plate No.: </label>
+                                <label> Plate Number: </label>
                                 <input type="text" name="plate_num" class="form-control", required>
                             </div>
                             <div class = "form-group">
@@ -104,7 +104,7 @@ require_once "config.php";
                     </div>
                         <form action="Available.php" method="post">
                             <div class="form-group">
-                                <label><h3> Vehicle</h3></label>
+                                <label><h3> Change Vehicle Status </h3></label>
                             </div>
                             <div class ="form-group">
                                 <label> Car ID: </label>
