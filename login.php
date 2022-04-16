@@ -16,12 +16,12 @@ $username_err = $password_err = $login_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(empty(trim($_POST["username"]))){
-        $username_err = "Username Required";
+        $username_err = "Username Required"; // if username is empty 
     } else{
         $username = trim($_POST["username"]);
     }
     if(empty(trim($_POST["password"]))){
-        $password_err = "Password Required";
+        $password_err = "Password Required"; // if password is empty 
     } else{
         $password = trim($_POST["password"]);
     }
@@ -37,9 +37,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
  
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password); 
                     if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
+                        if(password_verify($password, $hashed_password)){ //checking against hashed password 
                             session_start();
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
