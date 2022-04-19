@@ -1,14 +1,4 @@
 <?php
-<<<<<<< HEAD:booking.php
-    // Initialize the session
-    session_start();
-    
-    // Check if the user is logged in, if not then redirect him to login page
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-        header("location: login.php");
-        exit;
-    }
-=======
 // Initialize the session
 session_start();
  
@@ -17,7 +7,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
->>>>>>> 03ee5f78926b14d32353217a03642d3d49882481:booking.php
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +25,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
 <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. BOOK YOUR CAR HERE.</h1>
     <p>
-        <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
         <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
     </p>
     <?php
