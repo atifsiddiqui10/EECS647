@@ -124,15 +124,71 @@ if(isset($_POST['submit']))
 
 <head>
     <meta charset="utf-8" />
-    <title>A simple, clean, and responsive HTML receipt template</title>
+    <title>Receipt template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        .wrapper{
+            width: 500px;
+            margin: 0 auto;
+        }
+        
+        body
+        {   
+            background-image: url("https://wallpaperaccess.com/full/52448.jpg");
+            /* background-image: url("https://www.99images.com/download-image/829356/5000x2812"); */
+            /* background-color: lightblue; */
+            max-width:100%;
+            max-height:100%;
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: center;
+            
+                 
+        }
+    </style>
+    <style>
+        .bgimg {
+        background-image: url('https://images.hdqwalls.com/wallpapers/audi-headlights-wide.jpg');
+        max-width:100%;
+        max-height:100%;
+        }
+    </style>
 
 </head>
 
 
 <body>
+<center>
+<div class="header" style="background-color:white;">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEenFLhhoz-KfFwnbomhaLIDN_BbOPmJpQQg&usqp=CAU" alt="logo" style="width: 150px; max-width: 200px; height: 100px;"/>
+  <h1 style="color:black; font-family:sans-serif;"><strong> NEMESIS CORP </strong></h1>
+  <h3 style="color:black; font-family:sans-serif;">Your Receipt</h3>
+  
+<style>
+    .h{
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
+    .header img {
+    float: center;
+    width: 100px;
+    height: 100px;
+    background: #555;
+    }
 
-    <div class="receipt-box">
+    .header h1 {
+    position: relative;
+    top: 18px;
+    left: 10px;
+    }
+</style>
+
+    
+
+</div>
+</center>
+
+    <div class="receipt-box" style="background-color: white;">
 
         <div class="header">
             <center>
