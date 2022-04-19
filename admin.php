@@ -23,23 +23,35 @@ require_once "config.php";
         
         body
         {   
-            background-image: url("https://media.istockphoto.com/photos/close-up-of-a-man-receiving-new-car-key-picture-id628453996?b=1&k=20&m=628453996&s=170667a&w=0&h=RXUMWirsHCnXSCuu4IzGYqoE9E8ijOYE8oTmEA_-05Q=");
-            background-color: lightblue;
+            background-image: url("https://images.hdqwalls.com/wallpapers/audi-headlights-wide.jpg");
+            /* background-image: url("https://www.99images.com/download-image/829356/5000x2812"); */
+            /* background-color: lightblue; */
+            max-width:100%;
+            max-height:100%;
             background-repeat: no-repeat;
             background-size:cover;
-            max-width : 100%;
+            background-position: center;
             
                  
         }
     </style>
+    <style>
+        .bgimg {
+        background-image: url('https://images.hdqwalls.com/wallpapers/audi-headlights-wide.jpg');
+        max-width:100%;
+        max-height:100%;
+        }
+    </style>
+    
 </head>
 <body>
 <center>
-<div class="header">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEenFLhhoz-KfFwnbomhaLIDN_BbOPmJpQQg&usqp=CAU" alt="logo" />
-  <h2 style="color:black; font-family:sans-serif;">Nemesis Corps</h2>
-  <p2 style="color:black; font-family:sans-serif;">Admin view</p2>
-<style>2
+<div class="header" style="background-color:white;">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEenFLhhoz-KfFwnbomhaLIDN_BbOPmJpQQg&usqp=CAU" alt="logo" style="width: 150px; max-width: 200px; height: 100px;"/>
+  <h1 style="color:black; font-family:sans-serif;"><strong> NEMESIS CORP </strong></h1>
+  <h3 style="color:black; font-family:sans-serif;">ADMIN VIEW</h3>
+  <a href="logout.php" class="btn btn-danger ml-3", style = "float: right; color:black" >Sign Out</a>
+<style>
     .h{
         font-family: Arial, Helvetica, sans-serif;
     }
@@ -58,52 +70,53 @@ require_once "config.php";
     }
 </style>
 
+    
+
 </div>
 </center>
-<p>
-    <a href="logout.php" class="btn btn-danger ml-3", style = "float: right; color:black" >Sign Out</a>
-</p>
+
+<div class="bgimg">
 
 <div class="wrapper", style="width: 40%; height: 50%; float: left;">
-        <div class="container-fluid"style="background-color:white">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
-                    </div>
-                        <form action="InsertVehicle.php" method="post">
+                    <!-- <div class="page-header">
+                    </div> -->
+                        <form action="InsertVehicle.php" method="post" style="">
                             <div class="form-group">
-                                <label><h3>Add Vehicle</h3></label>
+                                <label><h3 style="color: white;">Add Vehicle</h3></label>
                             </div>
                             <div class ="form-group">
-                                <label> Car ID: </label>
+                                <label style="color: white;"> Car ID: </label>
                                 <input type="number" name="car_id" class="form-control", required>
                             </div>
                             <div class ="form-group">   
-                                <label> Plate Number: </label>
+                                <label style="color: white;" > Plate Number: </label>
                                 <input type="text" name="plate_num" class="form-control", required>
                             </div>
                             <div class = "form-group">
-                                <label> Car type: </label>
+                                <label style="color: white;"> Car type: </label>
                                 <input type="text" name="car_type" class="form-control", required>
                             </div>
                             <div>
-                                <label>Mileage: </label>
+                                <label style="color: white;" >Mileage: </label>
                                 <input type="number" name="mileage" class="form-control", required> 
                             </div>
                             <div>
-                                <label> Price Per Day: </label>
+                                <label style="color: white;" > Price Per Day: </label>
                                 <input type="number" name="price_per_day" class="form-control", required>
                             </div>
                             <div>
-                                <label> Model: </label>
+                                <label style="color: white;" > Model: </label>
                                 <input type="text" name="model" class="form-control", required>
                             </div>
                             <div>
-                                <label> pic: </label>
+                                <label style="color: white;" > pic: </label>
                                 <input type="link" name="pic" class="form-control", required>
-                            </div>
+                            </div >
                             <br> 
-                            <input type="submit" class="btn btn-primary" name="submit" value="Add Car">
+                            <input type="submit" class="btn btn-danger" name="submit" value="Add Car">
                             </div>
                         </form>
                      </div>
@@ -112,20 +125,20 @@ require_once "config.php";
  </div>
 
  <div class="wrapper", style="margin-left: 50%; height: 100px;">
-        <div class="container-fluid" style="background-color:white">
+        <div class="container-fluid" style="opacity:1.9;">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
-                    </div>
+                    <!-- <div class="page-header">
+                    </div> -->
                         <form action="DeleteVehicle.php" method="post">
                             <div class="form-group">
-                                <label><h3>Delete Vehicle</h3></label>
+                                <label><h3 style="color: white;">Delete Vehicle</h3></label>
                             </div>
                             <div class ="form-group">
-                                <label> Car ID: </label>
+                                <label style="color: white;"> Car ID: </label>
                                 <input type="number" name="car_id" class="form-control", required>
                             </div>
-                            <input type="submit" class="btn btn-primary" name="submit" value="Delete Car">
+                            <input type="submit" class="btn btn-danger" name="submit" value="Delete Car">
                             </div>
                         </form>
                      </div>
@@ -134,24 +147,24 @@ require_once "config.php";
  </div>
 
  <div class="wrapper", style="margin-left: 50%; height: 100px;">
-        <div class="container-fluid" style="background-color:white">
+        <div class="container-fluid" style="opacity:1.9;"  >
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
                     </div>
                         <form action="Available.php" method="post">
                             <div class="form-group">
-                                <label><h3> Change Vehicle Status </h3></label>
+                                <label><h3 style="color: white;"> Change Vehicle Status </h3></label>
                             </div>
                             <div class ="form-group">
-                                <label> Car ID: </label>
+                                <label style="color: white;"> Car ID: </label>
                                 <input type="number" name="car_id" class="form-control", required>
                             </div>
                             <div class ="form-group">
-                                <label> Available: </label>
+                                <label style="color: white;"> Available: </label>
                                 <input type="number" name="available" class="form-control", required>
                             </div>
-                            <input type="submit" class="btn btn-primary" name="submit" value="Update Car">
+                            <input type="submit" class="btn btn-danger" name="submit" value="Update Car">
                             </div>
                         </form>
                      </div>
@@ -160,24 +173,24 @@ require_once "config.php";
  </div>
 
  <div class="wrapper", style="margin-left: 50%; height: 100px;">
-        <div class="container-fluid" style="background-color:white">
+        <div class="container-fluid" style="opacity:1.9;" >
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
                     </div>
                         <form action="changeprice.php" method="post">
                             <div class="form-group">
-                                <label><h3>Change Vehicle Price</h3></label>
+                                <label><h3 style="color: white;">Change Vehicle Price</h3></label>
                             </div>
                             <div class ="form-group">
-                                <label> Car ID: </label>
+                                <label style="color: white;"> Car ID: </label>
                                 <input type="number" name="car_id" class="form-control", required>
                             </div>
                             <div class ="form-group">
-                                <label> New Price: </label>
+                                <label style="color: white;"> New Price: </label>
                                 <input type="number" name="price" class="form-control", required>
                             </div>
-                            <input type="submit" class="btn btn-primary" name="submit" value="Change Car Price">
+                            <input type="submit" class="btn btn-danger" name="submit" value="Change Car Price">
                             </div>
                         </form>
                      </div>
@@ -185,4 +198,6 @@ require_once "config.php";
         </div>
  </div>
 
+</div>
 </body>
+</html>
