@@ -23,10 +23,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 
 <body>
-<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. BOOK YOUR CAR HERE.</h1>
-    <p>
-        <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
-    </p>
+
     <?php
         $servername='mysql.eecs.ku.edu';
         $username='m145s484';
@@ -47,16 +44,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         while($row = mysqli_fetch_assoc($answer)){
     
  ?>
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
+ <div style="">
+<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. BOOK YOUR CAR HERE.</h1>
+    <p>
+        <a href="logout.php" class="btn btn-danger ml-3" style="">Sign Out of Your Account</a>
+    </p>
+     
+        </div>
                 <div class="col-md-12">
                     <div class="page-header">
                     </div>
                     <form action="Insert_Reservation.php" method="post">
-                        <div class="form-group">
-                            <label>Your Personal Vehicle!!!!</label>
-                            <img style="text-align: center; display: flex; left: 50; right: 50; width: 100%; height: 50%;" src="<?php echo $row['PIC']; ?>">
+                        <div class="form-group" style="text-align:center; font-style:roboto;">
+                            <label>Your Personal Vehicle</label>
+                            <img style="text-align: center; display: flex; left: 50; right: 50; width: 100%; height: 20%;" src="<?php echo $row['PIC']; ?>">
                             <h2> Model: <?php echo $row['Model'];?> <br> Mileage: <?php echo $row['Mileage'];?> <br> Plate No: <?php echo $row['Plate_num'];?>
                                <br> Price: $<?php echo $row['Price_per_day'];?></h2>
                             <h1></h1>
@@ -87,12 +88,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             <input type="email" name="email" id="email"pattern=".+@ku\.edu" size="30" placeholder="XYZ@ku.edu" required>
                         </div>
                         <input id="carid" type=hidden name="carid" value= "<?php echo $Car_id ?>"/>
-                        <input type="submit" class="btn btn-primary"  name="submit" value="Submit">
+                        <input type="submit" class="btn btn-primary"  name="submit" value="Book">
                     </form>
                 </div>
-            </div>        
-        </div>
-    </div>
 </body>
 <?php
 mysqli_close($conn);
@@ -101,3 +99,10 @@ mysqli_close($conn);
         ?>
 </html>
        
+<style>
+
+ .row{
+     height:100%;
+     width:100%;
+ }   
+    </style>
