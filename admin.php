@@ -2,12 +2,13 @@
 // Initialize the session
 session_start();
  
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: emplogin.php");
+    exit;
+}
+?>
  
-// Include config file
-require_once "config.php";
-?> 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
