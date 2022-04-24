@@ -187,10 +187,12 @@ if(isset($_POST['submit']))
 
 </div>
 </center>
-
+<a href="welcome.php" class="btn btn-primary ml-3">Home</a>
+<a href="logout.php" class="btn btn-danger ml-3">Sign Out</a>
     <div class="receipt-box" style="background-color: white;">
 
         <div class="header">
+       
             <center>
                 <h1>Confirmation</h1>
             </center>

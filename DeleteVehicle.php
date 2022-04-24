@@ -25,4 +25,5 @@ if(isset($_POST['submit']))
 
      mysqli_close($conn);
 }
+header("location: admin.php");
 ?>
