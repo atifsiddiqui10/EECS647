@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 $servername='mysql.eecs.ku.edu';
 $username='m145s484';
 $password='Keegae3z';
@@ -17,4 +17,4 @@ error_reporting(E_ALL);
      echo $carid;
      mysqli_close($conn);
 
-?>
+?> -->
