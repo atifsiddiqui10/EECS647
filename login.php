@@ -1,9 +1,11 @@
+
 <?php
+//login page here
 // Session Start 
 session_start();
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location: welcome.php");//if logged in then welcome page
     exit;
 }
 
@@ -11,22 +13,22 @@ require_once "config.php";
 
 // giving variable names 
 $username = $password = "";
-$username_err = $password_err = $login_err = "";
+$error_username = $error_pass = $error_login = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Username Required"; // if username is empty 
+    if(empty(trim($_POST["username"]))){//check for empty
+        $error_username = "Username Required"; // if username is empty 
     } else{
         $username = trim($_POST["username"]);
     }
     if(empty(trim($_POST["password"]))){
-        $password_err = "Password Required"; // if password is empty 
+        $error_pass = "Password Required"; // if password is empty 
     } else{
         $password = trim($_POST["password"]);
     }
-    if(empty($username_err) && empty($password_err)){
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+    if(empty($error_username) && empty($error_pass)){
+        $sql = "SELECT id, username, password FROM users WHERE username = ?";//sql query from USERS table to get id and usernames
         if($stmt = mysqli_prepare($link, $sql)){
             mysqli_stmt_bind_param($stmt, "s", $param_username);
 
@@ -41,19 +43,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){ //checking against hashed password 
                             session_start();
-                            $_SESSION["loggedin"] = true;
+                            $_SESSION["loggedin"] = true;//changes the session to logged in
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
-                            header("location: welcome.php");
+                            header("location: welcome.php");//locateion reload to welcome page
                         } else{
-                            $login_err = "Invalid username or password.";
+                            $error_login = "Invalid username or password.";//if user or pass doesn't match
                         }
                     }
                 } else{
-                    $login_err = "Invalid username or password.";
+                    $error_login = "Invalid username or password.";//if user or pass doesn't match
                 }
             } else{
-                echo "Error";
+                echo "Error";//for development purposes
             }
 
             mysqli_stmt_close($stmt);
@@ -102,18 +104,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       
       <div class="form" >
       <?php 
-        if(!empty($login_err)){
-            echo '<div  style="color:pink" >' . $login_err . '</div>';
+        if(!empty($error_login)){
+            echo '<div  style="color:pink" >' . $error_login . '</div>';
         }        
         ?>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id='frm'>
         <label for="email">Username</label>
-        <input type="text"  name="username" style="background-color:pink; color:black" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-        <span class="invalid-feedback"><?php echo $username_err; ?></span>
+        <input type="text"  name="username" style="background-color:pink; color:black" class="form-control <?php echo (!empty($error_username)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+        <span class="invalid-feedback"><?php echo $error_username; ?></span>
 
         <label for="password">Password</label>
-        <input type="password" name="password" style="background-color:pink;  color:black" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-        <span class="invalid-feedback"><?php echo $password_err; ?></span>
+        <input type="password" name="password" style="background-color:pink;  color:black" class="form-control <?php echo (!empty($error_pass)) ? 'is-invalid' : ''; ?>">
+        <span class="invalid-feedback"><?php echo $error_pass; ?></span>
 
         <input type="submit" id="submit" onclick="isEmpty()" value="Login">
         <label> Don't have an account? <a href="register.php" style="color:pink;">Sign up</a> <br> Are you an admin? <a href="emplogin.php" style="color:pink; margin-top:50%">Login</a>

@@ -8,19 +8,20 @@ require_once "config.php";
  
 // Define variables and set to empty 
 $username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$error_username = $error_password = $error_confirmed = "";
  
 // Get data when form is submitted 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter a username.";
-    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
-        $username_err = "Username can only contain letters, numbers, and underscores.";
+        $error_username = "Please enter a username.";
+    } 
+    elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){//validate username using regex to make show the username have 8 characters and contians letters, numbers, or undercores.
+        $error_username = "Username can only contain letters, numbers, and underscores.";
     } else{
         // Sql statemnet to get id 
-        $sql = "SELECT id FROM users WHERE username = ?";
+        $sql = "SELECT id FROM users WHERE username = ?";// this query checks for existing user
         
         if($stmt = mysqli_prepare($link, $sql)){
             mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -29,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $username_err = "Username Exist.";
+                    $error_username = "Username Exist.";//if user exist, login
                 } else{
                     $username = trim($_POST["username"]);
                 }
@@ -42,28 +43,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate password
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";     
+        $error_password = "Please enter a password.";     
     } elseif(strlen(trim($_POST["password"])) < 8){
-        $password_err = "Password must have atleast 8 characters.";
+        $error_password = "Password must have atleast 8 characters.";
     } else{
         $password = trim($_POST["password"]);
     }
     
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";     
+        $error_confirmed = "Please confirm password.";     
     } else{
         $confirm_password = trim($_POST["confirm_password"]);
-        if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Oops!! Password did not match.";
+        if(empty($error_password) && ($password != $confirm_password)){
+            $error_confirmed = "Oops!! Password did not match.";
         }
     }
     
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+    if(empty($error_username) && empty($error_password) && empty($error_confirmed)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";//insert the user into the USERS table
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -134,16 +135,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         ?>
        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="email">Username</label>
-        <input type="text"  name="username" style="background-color:pink; color:black" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-        <span class="invalid-feedback"><?php echo $username_err; ?></span>
+        <input type="text"  name="username" style="background-color:pink; color:black" class="form-control <?php echo (!empty($error_username)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+        <span class="invalid-feedback"><?php echo $error_username; ?></span>
 
         <label for="password">Password</label>
-        <input type="password" name="password" style="background-color:pink;  color:black" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-        <span class="invalid-feedback"><?php echo $password_err; ?></span>
+        <input type="password" name="password" style="background-color:pink;  color:black" class="form-control <?php echo (!empty($error_password)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+        <span class="invalid-feedback"><?php echo $error_password; ?></span>
 
         <label for="password">Confirm Password</label>
-        <input type="password" name="confirm_password" style="background-color:pink;  color:black" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-        <span class="invalid-feedback"><?php echo $password_err; ?></span>
+        <input type="password" name="confirm_password" style="background-color:pink;  color:black" class="form-control <?php echo (!empty($error_confirmed)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+        <span class="invalid-feedback"><?php echo $error_password; ?></span>
 
         <div style="display:flex; position: static; margin-top:-10%">
         <input type="submit" id="submit" onclick="isEmpty()" value="Sign Up">

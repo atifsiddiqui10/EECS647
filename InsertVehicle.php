@@ -21,7 +21,7 @@ if(isset($_POST['submit']))
      $pic = $_POST['pic'];
 
      $sql = "INSERT INTO Vehicle (Car_id, Plate_num, Car_type, Mileage, Price_per_day, Available, Model, PIC)
-     VALUES ('$car_id', '$plate_no', '$car_type', '$mileage', '$price', '1' , '$model', '$pic')";
+     VALUES ('$car_id', '$plate_no', '$car_type', '$mileage', '$price', '1' , '$model', '$pic')";//insert new car with all the attributes
    
      if (mysqli_query($conn, $sql)) {
         echo "New record has been added successfully !";

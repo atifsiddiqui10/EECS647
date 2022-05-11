@@ -58,23 +58,15 @@ if ($mysqli->connect_errno) {
  printf("Connect failed: %s\n", $mysqli->connect_error);
  exit();
 }
-$query="SELECT * from Vehicle";
+$query="SELECT * from Vehicle";//get all the vehicles
 $answer=$mysqli->query($query);
 $Car_id= $Model = $Plate_num= $Car_type= $Mileage= $Price_per_day= "";
 
 
 while($row = mysqli_fetch_assoc($answer)){
-	// echo "<tr>";
-            
+   
     $someNewVar[$row['Car_id']] = $row; 
-    //         echo "<td>" . $row['Model'] . "</td>";
-    //         echo "<td>" . $row['Plate_num'] . "</td>";
-    //         echo "<td>" . $row['Car_type'] . "</td>";
-    //         echo "<td>" . $row['Mileage'] . "</td>";
-    //         echo "<td> $" . $row['Price_per_day'] . "</td>";
-           
-          
-    $value="Book me"
+    $value="Book me";
 
 ?>
 
@@ -114,7 +106,7 @@ if($row['Available'] == 0) {
     <input id="carid" type=hidden name="carid" value= "<?php echo $row['Car_id'] ?>"/>
    <td> <button value="book" name="book[]" type="submit" id="test" <?php if ($row['Available'] == 0){
 
-   ?> $value= "Booked" disabled='disabled'<?php  } else { ?> $value="Book me"  <?php } ?>><?php echo $value ?></button>
+   ?> $value= "Booked" disabled='disabled'<?php  } else { ?> $value="Book me"  <?php } //checks if car is available and if not available disable the button?>><?php echo $value ?></button>
    </td>
         
 </tr>
@@ -137,35 +129,7 @@ if($row['Available'] == 0) {
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
-    /* table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 1.5em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-}
- th, td {
-    padding: 12px 15px;
-}
-tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
 
-tbody tr:nth-of-type(even) {
-    
-}
-
-tbody tr:last-of-type {
-    
-}
-tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-} */
 
 body, html {
   background-color: #91ced4;

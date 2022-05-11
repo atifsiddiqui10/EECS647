@@ -16,7 +16,7 @@ if(isset($_POST['submit']))
      $price = $_POST['price'];
      
 
-     $sql = "UPDATE Vehicle SET Price_per_day = $price WHERE  Car_id = '$car_id'";
+     $sql = "UPDATE Vehicle SET Price_per_day = $price WHERE  Car_id = '$car_id'";//update the price of vehicle based on car_id
    
      if (mysqli_query($conn, $sql)) {
         echo "Record Price Updated!";

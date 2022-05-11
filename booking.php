@@ -38,8 +38,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         ini_set('display_startup_errors', '1');
         error_reporting(E_ALL);
         
-        $Car_id = $_POST['carid'];
-        $query = "SELECT * FROM Vehicle WHERE Car_id = $Car_id";
+        $Car_id = $_POST['carid'];//get car_id from welcome page
+        $query = "SELECT * FROM Vehicle WHERE Car_id = $Car_id";//select car based on car_id from welcome page
         $answer=$conn->query($query);
         while($row = mysqli_fetch_assoc($answer)){
     

@@ -1,5 +1,6 @@
 <?php 
 // Include config file
+//uses same implementation as the login page, just different table
 require_once "config.php";
 session_abort();
 //Define variables and set them to empty 

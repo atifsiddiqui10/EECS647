@@ -16,34 +16,19 @@ if(isset($_POST['submit']))
      $time = $_POST['time'];
      $date = $_POST['date'];
      $email=$_POST['email'];
-    //  echo $email;
      $sql = "INSERT INTO Reservation (ID, No_of_days, Location, Pickup_time, Car_id, Pickup_date, Email)
-     VALUES ('' , '$days','$location','$time', $car_id, '$date', '$email')";
+     VALUES ('' , '$days','$location','$time', $car_id, '$date', '$email')";//insert the user information for booking into reservation table
    
-     $minuscar= "UPDATE Vehicle SET Available = 0 WHERE Car_id = $car_id";
+     $minuscar= "UPDATE Vehicle SET Available = 0 WHERE Car_id = $car_id";// update the car availability
      if (mysqli_query($conn, $sql)) {
-      //   
-        
-         
-        //  echo "Booking done here";
-
      }
      if (mysqli_query($conn, $minuscar)) {
-        //   
-          
-           
-          //  echo "Booking done here";
   
        }
    
+   $query="SELECT * FROM Reservation INNER JOIN Vehicle ON Reservation.Car_Id=Vehicle.Car_Id WHERE Vehicle.Car_id=$car_id ";// GET Reservation details by inner join on vehicle with car_id
    
-
-     
-   //   $var_amount = $answer1 * $answer2;
-     
-
-
-   $query="SELECT * FROM Reservation , Vehicle where Reservation.Car_Id=Vehicle.Car_Id AND Vehicle.Car_id=$car_id ";
+   
    
    $query4="SELECT ID from Reservation";
 
@@ -67,47 +52,19 @@ if(isset($_POST['submit']))
     $newdate=date('Y-m-d', strtotime($date."7 days"));
     // echo $newdate;
     $sql2 = "INSERT INTO Receipt (Receipt_id,Total_amount, State_tax, ID)
-    VALUES ('',$var_amount,6.5, $Reservation)";
+    VALUES ('',$var_amount,6.5, $Reservation)";//insert the info from reservation into receipt after calculation.
     //  $payment = "INSERT INTO Receipt (Receipt_id,Total_amount, State_tax, ID)
     //  VALUES ('',$var_amount,6.5, $Reservation)";
     
     if(mysqli_query($conn, $sql2)) {
     //    echo "New record has been added successfully !";
-         $sql3="SELECT * FROM Receipt INNER JOIN Reservation where Receipt.ID=Reservation.ID AND Total_amount=$var_amount ";
+         $sql3="SELECT * FROM Receipt INNER JOIN Reservation ON Receipt.ID=Reservation.ID";
         //  $sql6="SELECT * FROM Payment "
          $answer3=$conn->query($sql3);
           if($row2=mysqli_fetch_assoc($answer3)){
-            // echo $var_amount;
-            // echo $row2['Receipt_id'];
-            // echo $row2['State_tax'];
-            // echo $row2['ID'];
-            // echo $row2['Total_amount'];
-            // $from = "deepakkumar@ku.com";
-            // $to = "deepakladher@gmail.com";
-            // $email_cc = "info@bbminfo.com";
-            // $email_bcc = "xyz@yahoo.com";
-            // $subject = "Invitation for New YGen SEO Tool";
-            // $message = "Dear User, We are very glad to inform and invite you, that BBM's YGen SEO Tool (bbminfo.com) is now ready to launch on 15th August, 2013.";
         
-            // /* Header Information */
-            // $header = "From: " . strip_tags($from) . "\r\n";
-            // // $header .= "Cc: " . strip_tags($email_cc) . "\r\n";
-            // // $header .= "Bcc: " . strip_tags($email_bcc) . "\r\n";
-            // // $header .= "Reply-To: " . strip_tags($from) . "\r\n";
-            // $header .= "MIME-Version: 1.0\r\n";
-            // $header .= "Content-Type: text/plain; charset=us-ascii\r\n";
-        
-            // $flg = mail($to, $subject, $message, $header);
-        
-            // if($flg == true) {
-            //     echo("Your message has been sent.");
-            // } else {
-            //     echo("Failed to sent.");
-            // }
           }
-
-
-      
+ 
     } else {
        echo "Error: " . $sql2 . ":-" . mysqli_error($conn);
     }

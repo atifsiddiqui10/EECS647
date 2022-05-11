@@ -1,4 +1,5 @@
 <?php
+
 $servername='mysql.eecs.ku.edu';
 $username='m145s484';
 $password='Keegae3z';
@@ -15,7 +16,7 @@ if(isset($_POST['submit']))
 {    $car_id = $_POST['car_id'];
      
 
-     $sql = "DELETE FROM Vehicle WHERE Car_id = '$car_id'";
+     $sql = "DELETE FROM Vehicle WHERE Car_id = '$car_id'";//delete the vehicle based on car_id
    
      if (mysqli_query($conn, $sql)) {
         echo "Record Deleted!";

@@ -16,7 +16,7 @@ if(isset($_POST['submit']))
      $available = $_POST['available'];
      
 
-     $sql = "UPDATE Vehicle SET Available = $available WHERE  Car_id = '$car_id'";
+     $sql = "UPDATE Vehicle SET Available = $available WHERE  Car_id = '$car_id'";//update the availability of each car
    
      if (mysqli_query($conn, $sql)) {
         echo "Record Updated!";
