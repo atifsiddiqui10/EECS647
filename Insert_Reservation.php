@@ -30,16 +30,17 @@ if(isset($_POST['submit']))
    
    
    
-   $query4="SELECT ID from Reservation";
+   
 
    
    $answer1=$conn->query($query);
-   $answer5=$conn->query($query4);
+  
   
  //   $answer2 = $conn->query($query2);
  // echo($answer2);
  if($row1 = mysqli_fetch_assoc($answer1)){
-   
+    $query4="SELECT ID from Reservation INNER JOIN Vehicle ON Reservation.Car_Id=Vehicle.Car_Id WHERE Vehicle.Car_id=$car_id ";
+    $answer5=$conn->query($query4);
    if($row5 = mysqli_fetch_assoc($answer5)){
    $Reservation=$row5['ID'];
    
